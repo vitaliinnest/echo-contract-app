@@ -2,7 +2,7 @@ import { Web3 } from "web3";
 import * as fs from "fs";
 import 'dotenv/config'
 
-const { abi, bytecode } = JSON.parse(fs.readFileSync("../compiled/SharedWallet.json"));
+const { abi, bytecode } = JSON.parse(fs.readFileSync("../compiled/EchoContract.json"));
 
 async function main() {
   const network = process.env.VITE_ETHEREUM_NETWORK;
