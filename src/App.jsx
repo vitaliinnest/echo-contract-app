@@ -18,6 +18,8 @@ const contract = new web3.eth.Contract(
   import.meta.env.VITE_CONTRACT_ADDRESS,
 );
 
+// todo: field for private key is needed!
+
 function App() {
   const [msg, setMsg] = useState('');
   const [logs, setLogs] = useState([]);
