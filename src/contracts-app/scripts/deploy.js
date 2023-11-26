@@ -2,7 +2,7 @@ import { Web3 } from "web3";
 import * as fs from "fs";
 import 'dotenv/config'
 
-const { abi, bytecode } = JSON.parse(fs.readFileSync("../compiled/EchoContract.json"));
+const { abi, bytecode } = JSON.parse(fs.readFileSync("../compiled/DataStorage.json"));
 
 async function main() {
   const network = process.env.VITE_ETHEREUM_NETWORK;
@@ -26,12 +26,10 @@ async function main() {
     })
     .once("transactionHash", (txhash) => {
       console.log(`Mining deployment transaction ...`);
-      console.log(`https://${network}.etherscan.io/tx/${txhash}`);
+      console.log(`https://${network}.etherscan.io/tx/${txhash}\n`);
     });
-  // The contract is now deployed on chain!
-  console.log(`Contract deployed at ${deployedContract.options.address}`);
   console.log(
-    `Add VITE_CONTRACT_ADDRESS to the.env file to store the contract address: ${deployedContract.options.address}`,
+    `Add VITE_CONTRACT_ADDRESS to the.env file to store the contract address:\n${deployedContract.options.address}`,
   );
 }
 

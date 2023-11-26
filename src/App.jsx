@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import EchoContract from "./contracts-app/compiled/EchoContract.json";
+import DataStorage from "./contracts-app/compiled/DataStorage.json";
 import { Web3 } from "web3";
 
-const { abi } = EchoContract;
+const { abi } = DataStorage;
 const network = import.meta.env.VITE_ETHEREUM_NETWORK;
 const web3 = new Web3(
   new Web3.providers.HttpProvider(
@@ -36,7 +36,7 @@ function App() {
         import.meta.env.VITE_CONTRACT_ADDRESS
       );
 
-      const method_abi = contract.methods.echo(msg).encodeABI();
+      const method_abi = contract.methods.addData(msg).encodeABI();
       const tx = {
         from: signer.address,
         to: contract.options.address,

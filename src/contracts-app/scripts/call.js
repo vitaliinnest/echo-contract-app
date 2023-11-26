@@ -2,7 +2,7 @@ import { Web3 } from "web3";
 import { readFileSync } from "fs";
 import 'dotenv/config'
 
-const { abi } = JSON.parse(readFileSync("../compiled/EchoContract.json"));
+const { abi } = JSON.parse(readFileSync("../compiled/DataStorage.json"));
 
 async function main() {
   const network = process.env.VITE_ETHEREUM_NETWORK;
@@ -19,7 +19,7 @@ async function main() {
     abi,
     process.env.VITE_CONTRACT_ADDRESS,
   );
-  const method_abi = contract.methods.echo("tryna understand what method returns").encodeABI();
+  const method_abi = contract.methods.addData("it's my life it's now or never").encodeABI();
   const tx = {
     from: signer.address,
     to: contract.options.address,
@@ -30,13 +30,30 @@ async function main() {
   const gas_estimate = await web3.eth.estimateGas(tx);
   tx.gas = gas_estimate;
   const signedTx = await web3.eth.accounts.signTransaction(tx, signer.privateKey);
-  console.log("Raw transaction data: " + signedTx.rawTransaction);
   const receipt = await web3.eth
     .sendSignedTransaction(signedTx.rawTransaction)
     .once("transactionHash", (txhash) => {
       console.log(`Mining transaction ...`);
       console.log(`https://${network}.etherscan.io/tx/${txhash}`);
     });
+
+  const dataWrittenLogs = receipt.logs.filter(log =>
+    log.address.toLowerCase() === process.env.VITE_CONTRACT_ADDRESS.toLowerCase() &&
+    log.topics[0] === web3.utils.sha3('DataWritten(string)')
+  );
+
+  dataWrittenLogs.forEach(log => {
+    const decodedData = web3.eth.abi.decodeLog(
+      [
+        { type: 'string', name: 'storedResult', indexed: false },
+      ],
+      log.data,
+      log.topics.slice(1)
+    );
+    console.log('DataWritten Result:', decodedData.storedResult);
+  });
+
+
   console.log(`Mined in block ${receipt.blockNumber}`);
 }
 

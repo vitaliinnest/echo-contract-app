@@ -2,10 +2,11 @@ import { promises as fs } from "fs";
 import solc from "solc";
 
 async function main() {
-  const sourceCode = await fs.readFile("../contracts/EchoContract.sol", "utf8");
-  const { abi, bytecode } = compile(sourceCode, "EchoContract");
+  const sourceCode = await fs.readFile("../contracts/DataStorage.sol", "utf8");
+  const { abi, bytecode } = compile(sourceCode, "DataStorage");
   const artifact = JSON.stringify({ abi, bytecode }, null, 2);
-  await fs.writeFile("../compiled/EchoContract.json", artifact);
+  await fs.writeFile("../compiled/DataStorage.json", artifact);
+  console.log('Compiled!');
 }
 
 function compile(sourceCode, contractName) {
