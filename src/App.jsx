@@ -14,6 +14,7 @@ function App() {
   const [privateKey, setPrivateKey] = useState("");
   const [msg, setMsg] = useState("");
   const [logs, setLogs] = useState([]);
+  const [sending, setSending] = useState(false);
 
   const handlePrivateKeyChange = (e) => {
     setPrivateKey(e.target.value);
@@ -26,6 +27,7 @@ function App() {
     }
 
     try {
+      setSending(true);
       const signer = web3.eth.accounts.privateKeyToAccount(`0x${privateKey}`);
       web3.eth.accounts.wallet.add(signer);
 
@@ -67,6 +69,8 @@ function App() {
     } catch (error) {
       console.error("Error:", error.message);
       setLogs((prevLogs) => [...prevLogs, `Error: ${error.message}`]);
+    } finally {
+      setSending(false);
     }
   }
 
@@ -93,7 +97,7 @@ function App() {
         onChange={(e) => setMsg(e.target.value)}
         placeholder="Enter a message"
       />
-      <button disabled={!privateKey.length} onClick={sendTransaction}>
+      <button disabled={!privateKey.length || sending} onClick={sendTransaction}>
         Send Transaction
       </button>
       <div
