@@ -12,6 +12,10 @@ contract DataStorage {
         emit DataWritten(storedResult);
     }
 
+    function clearData() public {
+        delete storedData;
+    }
+
     function stringJoin(string[] memory values, string memory delimiter) internal pure returns (string memory) {
         if (values.length == 0) {
             return "";
