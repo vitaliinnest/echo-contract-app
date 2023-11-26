@@ -12,7 +12,7 @@ const web3 = new Web3(
 
 function App() {
   const [privateKey, setPrivateKey] = useState(
-    import.meta.env.VITE_SIGNER_PRIVATE_KEY
+    import.meta.env.VITE_SIGNER_PRIVATE_KEY ?? ''
   );
   const [msg, setMsg] = useState("");
   const [logs, setLogs] = useState([]);
