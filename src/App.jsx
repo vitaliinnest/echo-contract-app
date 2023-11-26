@@ -82,7 +82,6 @@ function App() {
       const splittedStoredResult = decodedData.storedResult.split(', ');
       setStoredResult(splittedStoredResult);
 
-      // Update the logs state
       setLogs(transactionLogs);
     } catch (error) {
       console.error("Error:", error.message);
