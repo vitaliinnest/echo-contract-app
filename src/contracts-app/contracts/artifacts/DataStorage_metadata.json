@@ -1,0 +1,126 @@
+{
+	"compiler": {
+		"version": "0.8.22+commit.4fc1097e"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": false,
+						"internalType": "string",
+						"name": "storedResult",
+						"type": "string"
+					}
+				],
+				"name": "DataWritten",
+				"type": "event"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "string",
+						"name": "newData",
+						"type": "string"
+					}
+				],
+				"name": "addData",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "clearData",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"name": "storedData",
+				"outputs": [
+					{
+						"internalType": "string",
+						"name": "",
+						"type": "string"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "string[]",
+						"name": "values",
+						"type": "string[]"
+					},
+					{
+						"internalType": "string",
+						"name": "delimiter",
+						"type": "string"
+					}
+				],
+				"name": "stringJoin",
+				"outputs": [
+					{
+						"internalType": "string",
+						"name": "",
+						"type": "string"
+					}
+				],
+				"stateMutability": "pure",
+				"type": "function"
+			},
+			{
+				"stateMutability": "payable",
+				"type": "receive"
+			}
+		],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"src/contracts-app/contracts/DataStorage.sol": "DataStorage"
+		},
+		"evmVersion": "shanghai",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"src/contracts-app/contracts/DataStorage.sol": {
+			"keccak256": "0x7a745269503a8ecf7bde59add1b6722706cbb3131f5969e6b3f372b974931987",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://6fa5354a824a6d3d3361139303b2e75c3338359ec7fca03495daee6698bde01e",
+				"dweb:/ipfs/QmbEgD8avF3CD1mNMApThHkZDrCg9BFNv61Y8ULbvQKQxp"
+			]
+		}
+	},
+	"version": 1
+}
