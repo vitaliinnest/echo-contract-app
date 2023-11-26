@@ -153,7 +153,11 @@ function App() {
         onChange={(e) => setMsg(e.target.value)}
         placeholder="Enter a message"
       />
-      <button disabled={!privateKey?.length || sending} onClick={storeData}>
+      <button
+        style={{ background: "blue" }}
+        disabled={!privateKey?.length || sending}
+        onClick={storeData}
+      >
         Store Data Into Smart Contract
       </button>
       <button
@@ -181,7 +185,9 @@ function App() {
         ))}
       </div>
       {dataWasDeleted && (
-        <div style={{ marginTop: "20px", fontWeight: "bold", color: "#00e80c" }}>
+        <div
+          style={{ marginTop: "20px", fontWeight: "bold", color: "#00e80c" }}
+        >
           Storage Cleaned!
         </div>
       )}
@@ -195,9 +201,14 @@ function App() {
           {storedResult.map((storedStr, index) => (
             <div
               key={index}
-              style={{
-                color: index === storedResult.length - 1 ? "blue" : "white",
-              }}
+              style={
+                index === storedResult.length - 1
+                  ? {
+                      color: "blue",
+                      fontWeight: "bold"
+                    }
+                  : undefined
+              }
             >
               {index + 1}. {storedStr}
             </div>
