@@ -30,7 +30,6 @@ function App() {
     try {
       setSending(true);
       setLogs(["In progress..."]);
-      setStoredResult([]);
 
       const signer = web3.eth.accounts.privateKeyToAccount(`0x${privateKey}`);
       web3.eth.accounts.wallet.add(signer);
@@ -139,18 +138,18 @@ function App() {
           </div>
         ))}
       </div>
-      <div
+      {!!storedResult?.length && (<div
         style={{
           marginTop: "20px",
         }}
       >
-        <div>Stored Results:</div>
+        <div style={{ fontWeight: 'bold' }}>Stored Results:</div>
         {storedResult.map((storedStr, index) => (
           <div key={index} style={{ color: index === storedResult.length-1 ? 'blue' : 'white' }}>
             {index+1}. {storedStr}
           </div>
         ))}
-      </div>
+      </div>)}
     </div>
   );
 }
