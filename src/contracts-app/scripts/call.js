@@ -53,7 +53,6 @@ async function main() {
     console.log('DataWritten Result:', decodedData.storedResult);
   });
 
-
   console.log(`Mined in block ${receipt.blockNumber}`);
 }
 

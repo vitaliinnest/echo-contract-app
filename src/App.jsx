@@ -11,10 +11,11 @@ const web3 = new Web3(
 );
 
 function App() {
-  const [privateKey, setPrivateKey] = useState("");
+  const [privateKey, setPrivateKey] = useState(import.meta.env.VITE_SIGNER_PRIVATE_KEY);
   const [msg, setMsg] = useState("");
   const [logs, setLogs] = useState([]);
   const [sending, setSending] = useState(false);
+  const [storedResult, setStoredResult] = useState([]);
 
   const handlePrivateKeyChange = (e) => {
     setPrivateKey(e.target.value);
@@ -28,6 +29,9 @@ function App() {
 
     try {
       setSending(true);
+      setLogs(["In progress..."]);
+      setStoredResult([]);
+
       const signer = web3.eth.accounts.privateKeyToAccount(`0x${privateKey}`);
       web3.eth.accounts.wallet.add(signer);
 
@@ -45,7 +49,6 @@ function App() {
         gasPrice: "100000000000",
       };
 
-      setLogs(["In progress..."]);
       const gas_estimate = await web3.eth.estimateGas(tx);
       tx.gas = gas_estimate;
       const signedTx = await web3.eth.accounts.signTransaction(
@@ -63,6 +66,22 @@ function App() {
         .on("receipt", (receipt) => {
           transactionLogs.push(`Mined in block ${receipt.blockNumber}`);
         });
+
+      const dataWrittenLogs = receipt.logs.filter(
+        (log) =>
+          log.address.toLowerCase() ===
+            import.meta.env.VITE_CONTRACT_ADDRESS.toLowerCase() &&
+          log.topics[0] === web3.utils.sha3("DataWritten(string)")
+      );
+
+      const log = dataWrittenLogs[0];
+      const decodedData = web3.eth.abi.decodeLog(
+        [{ type: "string", name: "storedResult", indexed: false }],
+        log.data,
+        log.topics.slice(1)
+      );
+      const splittedStoredResult = decodedData.storedResult.split(', ');
+      setStoredResult(splittedStoredResult);
 
       // Update the logs state
       setLogs(transactionLogs);
@@ -97,8 +116,11 @@ function App() {
         onChange={(e) => setMsg(e.target.value)}
         placeholder="Enter a message"
       />
-      <button disabled={!privateKey.length || sending} onClick={sendTransaction}>
-        Send Transaction
+      <button
+        disabled={!privateKey?.length || sending}
+        onClick={sendTransaction}
+      >
+        Store Data Into Smart Contract
       </button>
       <div
         style={{
@@ -114,6 +136,18 @@ function App() {
             ) : (
               log
             )}
+          </div>
+        ))}
+      </div>
+      <div
+        style={{
+          marginTop: "20px",
+        }}
+      >
+        <div>Stored Results:</div>
+        {storedResult.map((storedStr, index) => (
+          <div key={index} style={{ color: index === storedResult.length-1 ? 'blue' : 'white' }}>
+            {index+1}. {storedStr}
           </div>
         ))}
       </div>
