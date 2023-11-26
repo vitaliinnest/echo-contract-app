@@ -2,8 +2,8 @@
   "_format": "hh-sol-cache-2",
   "files": {
     "D:\\UNIK\\4y\\Blockchain\\PZ-2\\storage-smart-contract-app\\src\\contracts-app\\contracts\\DataStorage.sol": {
-      "lastModificationDate": 1701007306115,
-      "contentHash": "36aedb5341252a46e265271db5c16622",
+      "lastModificationDate": 1701007580454,
+      "contentHash": "432fa05c6cc403ae2414b1ffcb9353e0",
       "sourceName": "src/contracts-app/contracts/DataStorage.sol",
       "solcConfig": {
         "version": "0.8.19",

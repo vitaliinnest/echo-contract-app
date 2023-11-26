@@ -6,6 +6,8 @@ contract DataStorage {
 
     event DataWritten(string storedResult);
 
+    receive() external payable {}
+
     function addData(string memory newData) public {
         storedData.push(newData);
         string memory storedResult = string(abi.encodePacked(stringJoin(storedData, ", ")));

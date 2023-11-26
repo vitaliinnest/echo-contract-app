@@ -9,7 +9,7 @@ describe("Shared Wallet", function () {
   let uploader;
 
   beforeEach(async () => {
-    [uploader, uploader2] = await ethers.getSigners();
+    [uploader] = await ethers.getSigners();
     const DataStorage = await ethers.getContractFactory(
       "src/contracts-app/contracts/DataStorage.sol:DataStorage",
       uploader

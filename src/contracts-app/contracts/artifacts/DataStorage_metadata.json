@@ -58,30 +58,6 @@
 				"type": "function"
 			},
 			{
-				"inputs": [
-					{
-						"internalType": "string[]",
-						"name": "values",
-						"type": "string[]"
-					},
-					{
-						"internalType": "string",
-						"name": "delimiter",
-						"type": "string"
-					}
-				],
-				"name": "stringJoin",
-				"outputs": [
-					{
-						"internalType": "string",
-						"name": "",
-						"type": "string"
-					}
-				],
-				"stateMutability": "pure",
-				"type": "function"
-			},
-			{
 				"stateMutability": "payable",
 				"type": "receive"
 			}
@@ -114,11 +90,11 @@
 	},
 	"sources": {
 		"src/contracts-app/contracts/DataStorage.sol": {
-			"keccak256": "0x7a745269503a8ecf7bde59add1b6722706cbb3131f5969e6b3f372b974931987",
+			"keccak256": "0x32bdcbb04ee3cad4940c47723509140c0ee665d03606b2faab49bf738684c3c5",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://6fa5354a824a6d3d3361139303b2e75c3338359ec7fca03495daee6698bde01e",
-				"dweb:/ipfs/QmbEgD8avF3CD1mNMApThHkZDrCg9BFNv61Y8ULbvQKQxp"
+				"bzz-raw://6ec4d076aa564beb30ee2d102de144182b76509e59df91e07cbffd8650b6b5a4",
+				"dweb:/ipfs/QmY6uPv4komXBmefcepCdTQ4TZhL7iymFbHggnNQD44AnH"
 			]
 		}
 	},
